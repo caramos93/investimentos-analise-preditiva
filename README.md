@@ -19,9 +19,19 @@ Projeto Pessoal Um/
 └── dashboard/         # produto final
 ```
 
-## Próximos passos (a definir com a Caroline)
-- [ ] Escolher fontes de dados públicas (ex.: Banco Central/SGS, B3, Tesouro Direto, Yahoo Finance, CVM)
-- [ ] Definir quais classes de investimento entram no escopo (do conservador ao agressivo)
-- [ ] Definir a stack do dashboard (Streamlit, Power BI, Dash, HTML)
-- [ ] Definir o tipo de previsão (séries temporais: ARIMA/Prophet/ML)
-- [ ] Criar o repositório no GitHub
+## Como rodar
+
+Requisitos: [uv](https://docs.astral.sh/uv/) (gerencia o Python e o ambiente virtual).
+
+```bash
+uv venv --python 3.12 .venv
+uv pip install --python .venv -r requirements.txt
+.venv\Scriptsctivate        # Windows
+```
+
+## Plano e cronograma
+
+O projeto segue um plano de 12 semanas (14/09 → 06/12/2026) com sete fases:
+coleta via API em Python → tratamento em SQL no Databricks → análise exploratória →
+modelo preditivo de séries temporais → dashboard em Power BI → portfólio.
+Detalhes em [docs/plano_12_semanas.md](docs/plano_12_semanas.md).

@@ -1,0 +1,22 @@
+﻿# Coleta de dados
+requests
+yfinance
+pyarrow
+
+# Tratamento e análise
+pandas
+numpy
+
+# Visualização
+matplotlib
+seaborn
+
+# Notebooks
+jupyter
+ipykernel
+
+# Séries temporais e previsão (fase 4)
+statsmodels
+prophet
+scikit-learn
+lightgbm
