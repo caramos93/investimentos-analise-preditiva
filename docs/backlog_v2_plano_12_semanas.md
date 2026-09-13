@@ -1,4 +1,6 @@
-# Plano de 12 semanas — Projeto Pessoal Um
+# Backlog v2 — plano estendido de 12 semanas
+
+> **Arquivado em 13/09/2026.** O plano ativo é `plano_17_dias.md` (entrega em 30/09/2026). Este documento fica como backlog do que entra na versão 2 do projeto.
 
 Criado em 13/09/2026 (domingo). Início: **segunda, 14/09/2026**. Término previsto: **domingo, 06/12/2026**.
 
