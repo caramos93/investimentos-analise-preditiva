@@ -39,22 +39,22 @@ Regras: **manhã nunca é teoria; noite nunca é código pesado.** Todo dia term
 ### Semana 1 — Coleta em Python, Git e Databricks
 | Dia | Manhã (prática, 1h) | Noite (teoria, ≤40 min) |
 |---|---|---|
-| **Seg 14** | O que é uma API (10 min de explicação). Escrever `src/coleta_bcb.py`: `requests.get` na Selic (SGS 11), transformar em DataFrame, salvar CSV. | **Git 1:** GitHub Skills *Introduction to GitHub* (1h, em inglês, prático). Fazer o commit e push do dia com as próprias mãos. |
-| **Ter 15** | Generalizar em `busca_sgs(codigo, inicio, fim)`; coletar CDI, IPCA, PTAX; salvar em parquet em `data/raw/`. | **Pandas 1:** Kaggle *Pandas* lições 1–3 (criar, ler, selecionar, resumir). |
-| **Qua 16** | `src/coleta_yf.py` com yfinance: ^BVSP, BOVA11.SA, IVVB11.SA, HGLG11.SA, BTC-USD desde 2015; salvar parquet. | **Pandas 2:** `resample` mensal e `merge`. Classes de investimento: pós × pré × inflação × variável (20 min). |
-| **Qui 17** | `src/coleta.py` que roda tudo e gera uma tabela longa única: `data, ativo, valor, fonte`. Escrever `docs/fontes_de_dados.md`. | **Git 2:** branches e pull request — GitHub Skills *Review pull requests*. Abrir a primeira PR do projeto (branch `coleta`) e fazer o merge. |
-| **Sex 18** (2–3h) | Databricks: criar catálogo/schema, subir os parquets para um Volume, criar tabelas **bronze** (dados como chegaram). | — |
-| **Sáb 19** (5h) | **Silver:** tipos corrigidos, datas, deduplicação, tudo em frequência mensal (último valor do mês; CDI/Selic acumulados no mês), `dim_ativo` (ativo, classe, perfil). **Gold:** retorno mensal (`LAG`), retorno acumulado, retorno real (descontado IPCA), volatilidade 12m (`STDDEV OVER`), drawdown máximo. Exportar gold em CSV para `data/processed/`. Notebooks SQL salvos em `src/sql/`. | — |
-| **Dom 20** (3–4h) | `notebooks/01_exploracao.ipynb`: "R$ 10 mil em jan/2015 em cada perfil", gráfico por classe, heatmap de correlação, tabela risco × retorno, **5 conclusões escritas**. Commit. | — |
+| **Seg 14** | O que é uma API (10 min de explicação). Escrever `src/coleta_bcb.py`: `requests.get` na Selic (SGS 11), transformar em DataFrame, salvar CSV. | **Git 1 (Xperiun · Git & GitHub para Colaboração):** "Git & GitHub" (21 min) + "Meu Primeiro Commit" (17 min). Fazer o commit e push do dia com as próprias mãos. |
+| **Ter 15** | Generalizar em `busca_sgs(codigo, inicio, fim)`; coletar CDI, IPCA, PTAX; salvar em parquet em `data/raw/`. | **Git 1b + Python:** Xperiun Git — "Conectando meu repositório local ao GitHub" (12 min) e "Resumo dos novos comandos" (11 min). Xperiun Python — "Funções" teoria (12 min). |
+| **Qua 16** | `src/coleta_yf.py` com yfinance: ^BVSP, BOVA11.SA, IVVB11.SA, HGLG11.SA, BTC-USD desde 2015; salvar parquet. | **Pandas:** Kaggle *Pandas* lições 1–3 (não há pandas no Xperiun). 15 min: pós × pré × inflação × variável. |
+| **Qui 17** | `src/coleta.py` que roda tudo e gera uma tabela longa única: `data, ativo, valor, fonte`. Escrever `docs/fontes_de_dados.md`. | **Git 2 (Xperiun):** "Introdução a branches" (12 min), "Conceitos essenciais" (24 min), "Pull Request" (5 min). Abrir a primeira PR do projeto (branch `coleta`) e fazer o merge. |
+| **Sex 18** (2–3h) | Antes (40 min, Xperiun · Databricks com Spark): módulo "Databricks SQL" aulas 1–4 e "Delta Lake — Parte I". Depois: criar catálogo/schema, subir os parquets para um Volume, criar tabelas **bronze** (dados como chegaram). | — |
+| **Sáb 19** (5h) | **Silver:** tipos corrigidos, datas, deduplicação, tudo em frequência mensal (último valor do mês; CDI/Selic acumulados no mês), `dim_ativo` (ativo, classe, perfil). **Gold:** retorno mensal (`LAG`), retorno acumulado, retorno real (descontado IPCA), volatilidade 12m (`STDDEV OVER`), drawdown máximo. Exportar gold em CSV para `data/processed/`. Notebooks SQL salvos em `src/sql/`. Apoio: Xperiun Databricks — "Manipulando datas" (10 min) e "Window functions" (9 min). | — |
+| **Dom 20** (3–4h) | `notebooks/01_exploracao.ipynb`: "R$ 10 mil em jan/2015 em cada perfil", gráfico por classe, heatmap de correlação, tabela risco × retorno, **5 conclusões escritas**. Commit. Apoio: Xperiun · Introdução à ML — módulo "Análise Exploratória", aulas de Matplotlib (estrutura, paradigmas) e Seaborn. | — |
 
 ### Semana 2 — Modelo preditivo e Power BI
 | Dia | Manhã (prática, 1h) | Noite (teoria, ≤40 min) |
 |---|---|---|
-| **Seg 21** | Baselines para Selic, IPCA e Ibovespa mensais: *naive* (repete o último valor) e média móvel 12m. Holdout: treinar até ago/2025, testar os 12 meses seguintes. MAE e MAPE. | **Séries temporais 1:** Kaggle *Time Series* lições 1–2 (tendência, sazonalidade). Por que nunca embaralhar o tempo. |
+| **Seg 21** | Baselines para Selic, IPCA e Ibovespa mensais: *naive* (repete o último valor) e média móvel 12m. Holdout: treinar até ago/2025, testar os 12 meses seguintes. MAE e MAPE. | **Séries temporais 1:** Kaggle *Time Series* lições 1–2 (tendência, sazonalidade). Xperiun · Introdução à ML — "Data Leakage" (por que nunca embaralhar o tempo). |
 | **Ter 22** | Prophet nas mesmas 3 séries; comparar com baseline na tabela. Se Prophet não bater o naive no Ibovespa, isso **é** o resultado — e vai no README. | **Séries temporais 2:** quickstart do Prophet; intervalo de confiança. |
-| **Qua 23** | Previsão de 6 meses à frente com intervalo; gerar `data/processed/fato_previsao.csv` (data, ativo, modelo, previsto, inf, sup). `docs/resultados_modelo.md`. | **Power BI 1 (Xperiun):** modelo estrela, relacionamentos, tabela calendário. |
-| **Qui 24** | Power BI: importar CSVs gold + previsão; `dim_calendario`, `dim_ativo`, `fato_mensal`, `fato_previsao`; relacionamentos. | **Power BI 2 (Xperiun):** DAX básico — medidas, `CALCULATE`, contexto de filtro. |
-| **Sex 25** (2–3h) | Medidas DAX: retorno acumulado, retorno real, volatilidade 12m, drawdown, retorno 12m/36m. | — |
+| **Qua 23** | Previsão de 6 meses à frente com intervalo; gerar `data/processed/fato_previsao.csv` (data, ativo, modelo, previsto, inf, sup). `docs/resultados_modelo.md`. | **Power BI 1 (Xperiun · Modelagem de Dados Avançado):** "Star Schema ou Snowflake?" e a aula de tabela calendário / relacionamentos bidirecionais. |
+| **Qui 24** | Power BI: importar CSVs gold + previsão; `dim_calendario`, `dim_ativo`, `fato_mensal`, `fato_previsao`; relacionamentos. | **Power BI 2 (Xperiun · DAX Avançado):** "Revisando Contexto de Filtro" (10 min), "Filtrando expressões com a CALCULATE" (10 min), "Removendo filtros com ALL" (12 min). |
+| **Sex 25** (2–3h) | Antes (30 min, Xperiun · DAX Avançado): "Acumulado infinito com ALL/ALLSELECTED" (9 min) e "Totais e médias móveis com DATESINPERIOD" (14 min). Depois: medidas de retorno acumulado, retorno real, volatilidade 12m, drawdown, retorno 12m/36m. | — |
 | **Sáb 26** (5h) | Páginas: **(1)** visão geral — KPIs por perfil e evolução de R$ 10 mil; **(2)** risco × retorno — dispersão vol × retorno, drawdown; **(3)** previsões — previsto × realizado no holdout e projeção 6 meses com faixa. | — |
 | **Dom 27** (3–4h) | Acabamento visual (tema, títulos, tooltips), capturas de tela para o README, `dashboard/investimentos.pbix` commitado. | — |
 
@@ -68,20 +68,31 @@ Regras: **manhã nunca é teoria; noite nunca é código pesado.** Todo dia term
 ## Git e GitHub — o que o mercado pede e onde aprender
 O necessário para vaga de dados: clonar, `add/commit/push/pull`, escrever mensagens de commit claras, `.gitignore`, branches, abrir e revisar *pull request*, README bem escrito, tags/releases. Não precisa de rebase, submodules ou CI nesta fase.
 
-| Recurso | Formato | Quando |
+Fonte principal: **Xperiun · Git & GitHub para Colaboração** (35 aulas). O que assistir e quando:
+
+| Aulas | Duração | Quando |
 |---|---|---|
-| GitHub Skills — *Introduction to GitHub* (skills.github.com) | prático, ~1h, inglês, dentro do próprio GitHub | seg 14 |
-| GitHub Skills — *Review pull requests* | prático, ~1h | qui 17 |
-| Curso em Vídeo — *Git e GitHub* (Gustavo Guanabara, YouTube) | vídeo, português, gratuito | reserva, se quiser ver em português |
-| *Pro Git*, caps. 1–3 (git-scm.com/book/pt-br) | leitura, português | referência quando surgir dúvida |
-| Xperiun — verificar no catálogo se o plano Ultra tem módulo de Git/GitHub | vídeo | se existir, substitui os itens acima |
+| Introdução Versionamento → "Git & GitHub"; Praticando o GIT → "Meu Primeiro Commit" | ~38 min | seg 14 |
+| Praticando o GIT → "Conectando meu repositório local ao GitHub", "Resumo dos novos comandos Git" | ~23 min | ter 15 |
+| Branches → "Introdução a branches", "Conceitos essenciais", "Pull Request" | ~41 min | qui 17 |
+| Branches → "Mão na massa com Branch" (35 min) | opcional | fim de semana 19–20 |
+| Setup profissional para Eng. de Dados → "Instalando o venv e uv", "Subindo no GitHub", "Simulando um colega clonando", "Iniciando o PR e fazendo o merge" | ~64 min | opcional, fim de semana 26–27 — é exatamente o ambiente que montamos (uv + .venv) |
+
+Reserva em inglês, se quiser praticar dentro do GitHub: GitHub Skills *Introduction to GitHub* (skills.github.com). Referência para dúvidas: *Pro Git* caps. 1–3 (git-scm.com/book/pt-br).
 
 ## Trilha teórica mínima (só o que o dia exige)
-- **Python/pandas:** Kaggle *Pandas* (lições 1–4) e Kaggle *Time Series* (lições 1–2). Livro de referência: *Python for Data Analysis* (Wes McKinney, gratuito em wesmckinney.com/book), só para consulta.
-- **Power BI / DAX:** **Xperiun Ultra** como fonte principal — módulos de modelagem (estrela, calendário) e DAX (medidas, `CALCULATE`, contexto). Complemento: SQLBI *DAX Guide* para consultar uma função específica.
-- **SQL / Databricks:** você já domina; só a documentação do Free Edition (Volumes, Unity Catalog) e, se o Xperiun tiver módulo de Databricks, a aula de ingestão de arquivos.
-- **Finanças:** 20 min sobre pós × pré × inflação × renda variável (site do Tesouro Direto ou B3 Educação). O resto é o próprio dado ensinando.
-- **Previsão:** quickstart do Prophet + Kaggle *Time Series* já cobrem o que a v1 usa.
+Fonte principal: **Xperiun Ultra** (já conectado). Complementos externos só onde o catálogo não cobre.
+
+| Pilar | Xperiun | Complemento |
+|---|---|---|
+| Git/GitHub | *Git & GitHub para Colaboração* (tabela acima) | GitHub Skills (inglês, opcional) |
+| Python | *Python para Análise de Dados* — "Funções", "Arquivo CSV" | **pandas não está no Xperiun:** Kaggle *Pandas* lições 1–4 |
+| SQL/Databricks | *Databricks com Spark* — "Databricks SQL" (5 aulas), "Manipulando datas", "Window functions", "Delta Lake I", "Conectando os seus dados no Power BI" (4 aulas), bônus "Lendo dados da API no Databricks" | documentação do Free Edition (Volumes, Unity Catalog) |
+| Previsão | *Introdução à Machine Learning* — "Data Leakage"; *Estatística para Análise de Dados* (visão geral) | Kaggle *Time Series* lições 1–2; quickstart do Prophet |
+| EDA | *Introdução à Machine Learning* — módulo "Análise Exploratória de Dados" (Matplotlib, Seaborn) | — |
+| Power BI | *Modelagem de Dados Avançado* (star schema, calendário); *DAX Avançado* (CALCULATE, inteligência de tempo, acumulado, médias móveis, "Usando DAX em Visuais") | SQLBI *DAX Guide* para consultar uma função |
+| KPIs | *Business Analytics: Indicadores e KPIs* (já em andamento, 14/58) — só para desenhar a página 1 | — |
+| Finanças | — | 15 min no site do Tesouro Direto ou B3 Educação |
 
 ## Como usar a IA sem perder o aprendizado
 1. Pedir explicação **antes** do código: "me explique como fazer X, depois me mostre".
