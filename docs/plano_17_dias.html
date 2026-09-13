@@ -3,8 +3,7 @@
 <style>
   :root{
     --bg:#F5F7F5; --surface:#FFFFFF; --ink:#16232A; --muted:#5A6A6E; --line:#D8DEDC;
-    --accent:#0F6F6B; --accent-soft:#DDEEEC; --gold:#A8781F; --gold-soft:#F4EAD6;
-    --code-bg:#EDF1F0; --today:#B54A2E;
+    --accent:#0F6F6B; --accent-soft:#DDEEEC; --gold:#A8781F; --gold-soft:#F4EAD6; --code-bg:#EDF1F0;
     --serif:"Fraunces",Georgia,"Times New Roman",serif;
     --sans:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
     --mono:"JetBrains Mono",Consolas,"Courier New",monospace;
@@ -12,16 +11,16 @@
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
       --bg:#0F1618; --surface:#172023; --ink:#E4EAE8; --muted:#97A6A6; --line:#283437;
-      --accent:#4FB8B1; --accent-soft:#183634; --gold:#D5A64E; --gold-soft:#3A2E16; --code-bg:#1E2A2D; --today:#E0704F;
+      --accent:#4FB8B1; --accent-soft:#183634; --gold:#D5A64E; --gold-soft:#3A2E16; --code-bg:#1E2A2D;
     }
   }
   :root[data-theme="dark"]{
     --bg:#0F1618; --surface:#172023; --ink:#E4EAE8; --muted:#97A6A6; --line:#283437;
-    --accent:#4FB8B1; --accent-soft:#183634; --gold:#D5A64E; --gold-soft:#3A2E16; --code-bg:#1E2A2D; --today:#E0704F;
+    --accent:#4FB8B1; --accent-soft:#183634; --gold:#D5A64E; --gold-soft:#3A2E16; --code-bg:#1E2A2D;
   }
   *{box-sizing:border-box}
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;padding-inline:20px;padding-block:40px 80px}
-  .wrap{max-width:820px;margin:0 auto;display:grid;gap:52px}
+  .wrap{max-width:840px;margin:0 auto;display:grid;gap:52px}
   h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0;text-wrap:balance}
   h1{font-size:2.4rem;font-variation-settings:"opsz" 144}
   h2{font-size:1.55rem;margin-bottom:18px}
@@ -29,37 +28,40 @@
   p{margin:0}
   .eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
   header{display:grid;gap:14px;padding-bottom:28px;border-bottom:1px solid var(--line)}
-  header p.lead{font-size:1.1rem;color:var(--muted);max-width:62ch}
+  header p.lead{font-size:1.1rem;color:var(--muted);max-width:64ch}
   .dates{display:flex;flex-wrap:wrap;gap:10px 28px;font-family:var(--mono);font-size:.85rem;color:var(--muted)}
   .dates b{color:var(--ink);font-weight:500}
   code{font-family:var(--mono);font-size:.85em;background:var(--code-bg);padding:1px 5px;border-radius:3px}
-  a{color:var(--accent)}
-  table{width:100%;border-collapse:collapse;font-size:.93rem}
+  table{width:100%;border-collapse:collapse;font-size:.92rem}
   th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
   th{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  td.n{font-family:var(--mono);color:var(--accent);font-weight:500;width:2.2rem}
+  td.lvl{font-weight:600;white-space:nowrap}
   .tscroll{overflow-x:auto}
   .rule{margin-top:16px;padding:14px 16px;border-left:3px solid var(--accent);background:var(--surface);font-size:.95rem}
+  .case{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:16px;font-size:.98rem;max-width:70ch}
+  .case b{font-family:var(--serif);font-size:1.05rem}
 
-  /* orçamento */
-  .budget{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-  .b{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;display:grid;gap:4px;align-content:start}
-  .b .n{font-family:var(--serif);font-size:1.7rem;font-weight:600;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
-  .b .n small{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-left:3px}
-  .b .t{font-weight:600;font-size:.9rem}
-  .b .s{font-size:.8rem;color:var(--muted);line-height:1.35}
-
-  /* escopo */
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .col{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px}
-  .col h3{font-size:.95rem;margin-bottom:8px}
-  .col.in h3{color:var(--accent)} .col.out h3{color:var(--muted)}
-  .col ul{margin:0;padding-left:18px;font-size:.88rem;display:grid;gap:4px}
-  .col.out ul{color:var(--muted)}
+  /* arquitetura */
+  .arch{display:grid;gap:8px}
+  .lake{border:1px solid var(--accent);border-radius:8px;padding:14px;display:grid;gap:10px;background:var(--surface)}
+  .lake .lbl{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .st{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px;display:grid;gap:3px;align-content:start;position:relative}
+  .st .k{font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+  .st .t{font-weight:600;font-size:.9rem;line-height:1.2}
+  .st .s{font-size:.78rem;color:var(--muted);line-height:1.3}
+  .st:not(:last-child)::after{content:"→";position:absolute;right:-11px;top:12px;color:var(--muted);font-size:.9rem;z-index:1}
+  .flow.two{grid-template-columns:1fr 1fr}
+  .out{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .out .st{background:var(--surface)}
+  .out .st::after{content:none}
+  .out .st.pbi{border-color:var(--gold)} .out .st.pbi .k{color:var(--gold)}
 
   /* dia a dia */
   .weekhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;padding-top:22px;border-top:1px solid var(--line);margin-bottom:10px}
   .weekhead .range{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
-  .days{display:grid;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+  .days{display:grid;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
   .dy{display:grid;grid-template-columns:92px 1fr 1fr;gap:14px;padding:12px 14px;border-bottom:1px solid var(--line)}
   .dy:last-child{border-bottom:0}
   .dy.big{grid-template-columns:92px 1fr}
@@ -75,12 +77,18 @@
   .dy.done{background:var(--accent-soft)}
   .dy.done .am::before{content:"✓ feito hoje"}
 
-  /* git */
+  .ladders{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .ladder{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px}
+  .ladder h3{font-size:1rem;margin-bottom:10px}
+  .ladder ol{margin:0;padding-left:0;list-style:none;display:grid;gap:7px;font-size:.86rem}
+  .ladder li{display:grid;grid-template-columns:82px 1fr;gap:10px}
+  .ladder li b{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+  .ladder.sql li b{color:var(--accent)} .ladder.dax li b{color:var(--gold)}
+
   .gitlist{display:grid;gap:8px;font-size:.92rem}
   .gi{display:grid;grid-template-columns:1fr auto;gap:12px;padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-radius:6px;align-items:center}
   .gi .w{font-family:var(--mono);font-size:.74rem;color:var(--muted);white-space:nowrap}
   .gi small{display:block;color:var(--muted);font-size:.82rem}
-
   .tracks{display:grid;gap:12px}
   .track{display:grid;grid-template-columns:130px 1fr;gap:16px;font-size:.93rem}
   .track .k{font-weight:600}
@@ -89,10 +97,10 @@
 
   @media (max-width:680px){
     body{font-size:16px} h1{font-size:1.9rem}
-    .budget{grid-template-columns:repeat(2,1fr)}
-    .split{grid-template-columns:1fr}
+    .flow,.out,.ladders{grid-template-columns:1fr}
+    .st:not(:last-child)::after{content:"↓";right:auto;left:12px;top:auto;bottom:-14px}
     .dy,.dy.big{grid-template-columns:1fr;gap:8px}
-    .track{grid-template-columns:1fr;gap:4px}
+    .track,.ladder li{grid-template-columns:1fr;gap:4px}
   }
   :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </style>
@@ -101,104 +109,126 @@
 
 <header>
   <p class="eyebrow">Projeto Pessoal Um · v1 · Caroline Ramos</p>
-  <h1>Investimentos: dos dados públicos ao dashboard, em 17 dias</h1>
-  <p class="lead">O pipeline inteiro — coleta via API em Python, tratamento em SQL no Databricks, previsão com Prophet e dashboard em Power BI — entregue e publicado no GitHub até 30 de setembro. Menor que o plano de 12 semanas, mas terminado; o que ficou de fora vira a v2.</p>
+  <h1>Horizonte Investimentos: um caso de dados de ponta a ponta, em 17 dias</h1>
+  <p class="lead">Ingestão por API, tratamento em SQL, análise e previsão em Python — tudo dentro do Databricks — e um dashboard em Power BI com modelagem relacional e DAX do básico ao avançado. Oito perguntas de negócio de uma assessoria fictícia dão o rumo; o GitHub guarda a história.</p>
   <div class="dates"><span>início <b>seg 14/09/2026</b></span><span>entrega <b>qua 30/09/2026</b></span><span>orçamento <b>~44 h</b></span><span>repo <b>caramos93/investimentos-analise-preditiva</b></span></div>
 </header>
 
 <section>
-  <p class="eyebrow">Orçamento</p>
-  <h2>Onde as 44 horas estão</h2>
-  <div class="budget">
-    <div class="b"><span class="n">16<small>h</small></span><span class="t">Seg–qui · 8 dias</span><span class="s">1h manhã = prática · 1h noite = teoria curta + diário de 10 min</span></div>
-    <div class="b"><span class="n">10<small>h</small></span><span class="t">Sábados · 19 e 26</span><span class="s">5h de bloco profundo: a maior entrega de cada semana</span></div>
-    <div class="b"><span class="n">12<small>h</small></span><span class="t">Sextas e domingos</span><span class="s">2–3h sexta para abrir o bloco; 3–4h domingo para fechar e commitar</span></div>
-    <div class="b"><span class="n">6<small>h</small></span><span class="t">Seg–qua · 28 a 30</span><span class="s">README, reprodutibilidade, release v1.0 e post no LinkedIn</span></div>
-  </div>
-  <div class="rule"><strong>Regras:</strong> manhã nunca é teoria; noite nunca é código pesado. Todo dia termina com um commit, mesmo pequeno. Travou por mais de 30 minutos? Anota no diário e me chama — a hora é curta demais para insistir sozinha.</div>
+  <p class="eyebrow">O caso</p>
+  <h2>Oito perguntas que a diretoria quer respondidas</h2>
+  <div class="case"><b>Horizonte Investimentos</b> é uma assessoria que atende clientes de quatro perfis — conservador, moderado, arrojado e agressivo. A diretoria quer parar de recomendar "no feeling" e pediu à área de dados um painel que responda, com dados públicos desde 2015:</div>
+  <div class="tscroll"><table>
+    <thead><tr><th>#</th><th>Pergunta</th><th>Onde é respondida</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>Quanto rendeu cada classe nos últimos 12, 36 e 60 meses — nominal e acima da inflação?</td><td>SQL (agregação + join com IPCA) · DAX (<code>CALCULATE</code> + <code>DATESINPERIOD</code>)</td></tr>
+      <tr><td class="n">2</td><td>R$ 10 mil aplicados em jan/2015 em cada perfil viraram quanto hoje?</td><td>SQL (acumulado com window) · DAX (acumulado + parâmetro what-if)</td></tr>
+      <tr><td class="n">3</td><td>Qual foi o pior momento de cada classe (drawdown máximo) e quantos meses levou para recuperar?</td><td>SQL (<code>MAX OVER</code>, gaps) · DAX (variáveis)</td></tr>
+      <tr><td class="n">4</td><td>Em quais anos a renda variável perdeu do CDI? Ranking anual das classes.</td><td>SQL (<code>RANK</code>, <code>PIVOT</code>) · DAX (<code>RANKX</code>)</td></tr>
+      <tr><td class="n">5</td><td>Diversificar ajuda? Quando o Ibovespa cai, o dólar (IVVB11) protege?</td><td>Python (correlação) · SQL (<code>CORR</code>)</td></tr>
+      <tr><td class="n">6</td><td>Cripto compensou o risco? Retorno por unidade de volatilidade vs CDI.</td><td>SQL (<code>STDDEV OVER</code>) · DAX (<code>DIVIDE</code>)</td></tr>
+      <tr><td class="n">7</td><td>Qual a expectativa de Selic e IPCA nos próximos 6 meses, e o que muda para o cliente conservador?</td><td>Python (Prophet) · Power BI (previsto × realizado)</td></tr>
+      <tr><td class="n">8</td><td>Qual perfil teve o melhor retorno ajustado ao risco, e o que recomendar para cada cliente?</td><td>Síntese — página 1 do dashboard + README</td></tr>
+    </tbody>
+  </table></div>
+  <div class="rule">Cada pergunta ganha uma resposta escrita em <code>docs/respostas_negocio.md</code> — o relatório para a diretoria. É esse texto que vira o README e o post no LinkedIn.</div>
 </section>
 
 <section>
-  <p class="eyebrow">Escopo</p>
-  <h2>O que entra na v1 — e o que espera a v2</h2>
-  <div class="split">
-    <div class="col in"><h3>Entra (17 dias)</h3><ul>
-      <li>BCB SGS: Selic, CDI, IPCA, PTAX — sem chave, sem cadastro</li>
-      <li>yfinance: ^BVSP, BOVA11, IVVB11, HGLG11, BTC-USD</li>
-      <li>Databricks: bronze → silver → gold em SQL, frequência mensal</li>
-      <li>Modelo: baseline naive + Prophet, holdout de 12 meses</li>
-      <li>Power BI: 3 páginas, alimentado por CSV exportado do gold</li>
-      <li>Retorno acumulado, retorno real, volatilidade, drawdown</li>
-      <li>README com a história + post no LinkedIn</li>
-    </ul></div>
-    <div class="col out"><h3>Fica para a v2</h3><ul>
-      <li>Tesouro Transparente (títulos públicos individuais)</li>
-      <li>Small caps, mais FIIs, Ethereum</li>
-      <li>Delta time travel, MERGE incremental</li>
-      <li>ARIMA/SARIMA, LightGBM, backtest com janela móvel</li>
-      <li>Conector Databricks nativo no Power BI, simulador what-if</li>
-      <li>Sharpe e correlação dentro do Power BI</li>
-      <li>GitHub Pages, gif animado do dashboard</li>
-    </ul></div>
+  <p class="eyebrow">Arquitetura</p>
+  <h2>Databricks no centro, Power BI na ponta</h2>
+  <div class="arch">
+    <div class="lake">
+      <span class="lbl">Databricks Free Edition · notebooks Python e SQL · Git folder ligado ao GitHub</span>
+      <div class="flow">
+        <div class="st"><span class="k">python</span><span class="t">Ingestão</span><span class="s">requests na API do BCB; yfinance para B3 e cripto</span></div>
+        <div class="st"><span class="k">delta</span><span class="t">bronze</span><span class="s">dados como chegaram: <code>sgs</code>, <code>cotacoes</code></span></div>
+        <div class="st"><span class="k">sql básico→médio</span><span class="t">silver</span><span class="s">tipos, datas, mensal, <code>dim_ativo</code></span></div>
+        <div class="st"><span class="k">sql avançado</span><span class="t">gold</span><span class="s">retornos, vol, drawdown, calendário; perguntas 1–4 e 6</span></div>
+        <div class="st"><span class="k">python</span><span class="t">Análise e previsão</span><span class="s">EDA, baselines, Prophet → <code>fato_previsao</code></span></div>
+      </div>
+    </div>
+    <div class="out">
+      <div class="st pbi"><span class="k">power bi desktop · conector databricks ou csv</span><span class="t">Modelo estrela + DAX básico → avançado</span><span class="s">3 páginas: diretoria, risco, previsão. Pergunta 8 e o relatório final.</span></div>
+      <div class="st"><span class="k">github · caramos93</span><span class="t">Repositório público</span><span class="s">notebooks, SQL, docs, .pbix, README com o caso. Ambiente local (VS Code + .venv) como apoio e backup.</span></div>
+    </div>
   </div>
-  <div class="tscroll" style="margin-top:14px"><table>
-    <thead><tr><th>Perfil</th><th>Ativo no projeto</th><th>Série</th></tr></thead>
-    <tbody>
-      <tr><td>Conservador</td><td>CDB pós-fixado / Tesouro Selic</td><td><code>CDI SGS 12</code> <code>Selic SGS 11</code></td></tr>
-      <tr><td>Moderado</td><td>Fundo imobiliário</td><td><code>HGLG11.SA</code></td></tr>
-      <tr><td>Arrojado</td><td>Ibovespa, S&amp;P 500 em reais</td><td><code>^BVSP</code> <code>BOVA11.SA</code> <code>IVVB11.SA</code></td></tr>
-      <tr><td>Agressivo</td><td>Bitcoin</td><td><code>BTC-USD</code> × <code>PTAX SGS 1</code></td></tr>
-      <tr><td>Referência</td><td>Inflação</td><td><code>IPCA SGS 433</code></td></tr>
-    </tbody>
-  </table></div>
 </section>
 
 <section>
   <p class="eyebrow">Dia a dia</p>
   <h2>Dezessete dias, uma entrega por dia</h2>
 
-  <div class="weekhead"><h3>Semana 1 · Coleta em Python, Git e Databricks</h3><span class="range">14–20 set</span></div>
+  <div class="weekhead"><h3>Semana 1 · Ingestão, tratamento e perguntas em SQL</h3><span class="range">14–20 set</span></div>
   <div class="days">
-    <div class="dy done"><div class="when"><b>Dom 13</b>hoje</div><div class="am">Repositório criado, Python 3.12 + <code>.venv</code> + bibliotecas, VS Code, Databricks Free, Power BI. Teste com BCB e yfinance passou.</div></div>
-    <div class="dy"><div class="when"><b>Seg 14</b>2h</div><div class="am">O que é uma API (10 min). Escrever <code>src/coleta_bcb.py</code>: <code>requests.get</code> na Selic, DataFrame, salvar CSV.</div><div class="pm"><strong>Git 1 · Xperiun</strong> — <em>Git &amp; GitHub para Colaboração</em>: "Git &amp; GitHub" (21 min) e "Meu Primeiro Commit" (17 min). Commit e push do dia feitos com as próprias mãos.</div></div>
-    <div class="dy"><div class="when"><b>Ter 15</b>2h</div><div class="am">Generalizar em <code>busca_sgs(codigo, inicio, fim)</code>; coletar CDI, IPCA, PTAX; parquet em <code>data/raw/</code>.</div><div class="pm"><strong>Git 1b · Xperiun</strong> — "Conectando meu repositório local ao GitHub" (12 min), "Resumo dos novos comandos" (11 min). Python: "Funções" (12 min).</div></div>
-    <div class="dy"><div class="when"><b>Qua 16</b>2h</div><div class="am"><code>src/coleta_yf.py</code> com yfinance: ^BVSP, BOVA11, IVVB11, HGLG11, BTC-USD desde 2015.</div><div class="pm"><strong>Pandas</strong> — Kaggle <em>Pandas</em>, lições 1–3 (não há pandas no Xperiun). 15 min: pós × pré × inflação × variável.</div></div>
-    <div class="dy"><div class="when"><b>Qui 17</b>2h</div><div class="am"><code>src/coleta.py</code> que roda tudo e gera a tabela longa <code>data · ativo · valor · fonte</code>. <code>docs/fontes_de_dados.md</code>.</div><div class="pm"><strong>Git 2 · Xperiun</strong> — "Introdução a branches" (12 min), "Conceitos essenciais" (24 min), "Pull Request" (5 min). Abrir a primeira PR (branch <code>coleta</code>) e fazer o merge.</div></div>
-    <div class="dy big"><div class="when"><b>Sex 18</b><i>2–3h</i></div><div class="am">Antes, 40 min de Xperiun · <em>Databricks com Spark</em>: "Databricks SQL" aulas 1–4 e "Delta Lake — Parte I". Depois: catálogo e schema, parquets num Volume, tabelas <strong>bronze</strong> (dados como chegaram).</div></div>
-    <div class="dy big"><div class="when"><b>Sáb 19</b><i>5h</i></div><div class="am"><strong>Silver:</strong> tipos, datas, deduplicação, tudo mensal (último valor do mês; CDI/Selic acumulados), <code>dim_ativo</code>. <strong>Gold:</strong> retorno mensal (<code>LAG</code>), acumulado, real (descontado IPCA), volatilidade 12m (<code>STDDEV OVER</code>), drawdown. Exportar gold em CSV para <code>data/processed/</code>. SQL salvo em <code>src/sql/</code>. Apoio: Xperiun "Manipulando datas" e "Window functions".</div></div>
-    <div class="dy big"><div class="when"><b>Dom 20</b><i>3–4h</i></div><div class="am"><code>notebooks/01_exploracao.ipynb</code>: R$ 10 mil em jan/2015 em cada perfil, gráfico por classe, heatmap de correlação, tabela risco × retorno, <strong>5 conclusões escritas</strong>. Commit. Apoio: Xperiun · <em>Introdução à ML</em>, módulo "Análise Exploratória" (Matplotlib, Seaborn).</div></div>
+    <div class="dy done"><div class="when"><b>Dom 13</b>hoje</div><div class="am">Repositório, Python 3.12 + <code>.venv</code>, VS Code, Databricks Free, Power BI, Xperiun conectado. Caso de negócio e arquitetura definidos.</div></div>
+    <div class="dy"><div class="when"><b>Seg 14</b>2h</div><div class="am">Ligar o Databricks ao GitHub (Git folder). O que é uma API (10 min). Notebook <code>01_ingestao_bcb</code>: <code>requests.get</code> na Selic → pandas → Spark → <code>bronze.sgs</code>.</div><div class="pm"><strong>Git 1 · Xperiun</strong> — "Git &amp; GitHub" (21 min), "Meu Primeiro Commit" (17 min). Commit do dia pelo Git folder, com as próprias mãos.</div></div>
+    <div class="dy"><div class="when"><b>Ter 15</b>2h</div><div class="am">Generalizar em <code>busca_sgs(codigo, inicio, fim)</code>; CDI, IPCA, PTAX em <code>bronze.sgs</code>.</div><div class="pm"><strong>Git 1b · Xperiun</strong> — "Conectando ao GitHub", "Resumo dos comandos" (23 min). Python: "Funções" (12 min).</div></div>
+    <div class="dy"><div class="when"><b>Qua 16</b>2h</div><div class="am"><code>02_ingestao_yfinance</code> (<code>%pip install yfinance</code>): ^BVSP, BOVA11, IVVB11, HGLG11, BTC-USD desde 2015 → <code>bronze.cotacoes</code>.</div><div class="pm"><strong>Pandas</strong> — Kaggle <em>Pandas</em>, lições 1–3. 15 min: pós × pré × inflação × variável.</div></div>
+    <div class="dy"><div class="when"><b>Qui 17</b>2h</div><div class="am"><code>03_silver</code> — <strong>SQL básico → intermediário:</strong> <code>CAST</code>, <code>date_trunc</code>, <code>last_day</code>, <code>GROUP BY</code>, <code>CASE WHEN</code>, <code>JOIN</code>. Tudo mensal; <code>silver.serie_mensal</code>, <code>silver.dim_ativo</code>.</div><div class="pm"><strong>Git 2 · Xperiun</strong> — branches e "Pull Request" (41 min). Primeira PR do projeto (branch <code>silver</code>) e merge.</div></div>
+    <div class="dy big"><div class="when"><b>Sex 18</b><i>2–3h</i></div><div class="am">Antes, 40 min de Xperiun · Databricks: "Databricks SQL" 1–4, "Delta Lake I". Depois, <code>04_gold</code> — <strong>SQL avançado:</strong> CTEs, <code>LAG</code>, acumulado com <code>EXP(SUM(LN(1+r)) OVER)</code>, <code>STDDEV OVER (ROWS BETWEEN 11 PRECEDING…)</code>, drawdown com <code>MAX OVER</code>, <code>QUALIFY</code>. Tabelas <code>gold.fato_mensal</code>, <code>dim_ativo</code>, <code>dim_calendario</code>. <strong>Testar o conector do Power BI</strong> (Xperiun · "Conectando os seus dados no Power BI").</div></div>
+    <div class="dy big"><div class="when"><b>Sáb 19</b><i>5h</i></div><div class="am"><code>05_perguntas_negocio</code> (SQL): perguntas 1, 2, 3, 4 e 6, uma query cada (<code>RANK</code>, <code>PIVOT</code>, <code>CORR</code>, <code>FIRST_VALUE</code>). Respostas escritas em <code>docs/respostas_negocio.md</code>. Apoio: Xperiun "Manipulando datas", "Window functions".</div></div>
+    <div class="dy big"><div class="when"><b>Dom 20</b><i>3–4h</i></div><div class="am"><code>06_eda</code> (pandas): R$ 10 mil por perfil, correlação (pergunta 5), gráficos por classe, risco × retorno. PR + merge da semana, diário. Apoio: Xperiun · Intro à ML, módulo "Análise Exploratória".</div></div>
   </div>
 
-  <div class="weekhead"><h3>Semana 2 · Modelo preditivo e Power BI</h3><span class="range">21–27 set</span></div>
+  <div class="weekhead"><h3>Semana 2 · Previsão e Power BI</h3><span class="range">21–27 set</span></div>
   <div class="days">
-    <div class="dy"><div class="when"><b>Seg 21</b>2h</div><div class="am">Baselines para Selic, IPCA e Ibovespa mensais: naive e média móvel 12m. Holdout: treina até ago/2025, testa os 12 meses seguintes. MAE e MAPE.</div><div class="pm"><strong>Séries 1</strong> — Kaggle <em>Time Series</em>, lições 1–2. Xperiun · <em>Introdução à ML</em>: "Data Leakage" (por que nunca embaralhar o tempo).</div></div>
-    <div class="dy"><div class="when"><b>Ter 22</b>2h</div><div class="am">Prophet nas 3 séries; comparar com o baseline. Se o Prophet não bater o naive no Ibovespa, isso <em>é</em> o resultado — e vai no README.</div><div class="pm"><strong>Séries 2</strong> — quickstart do Prophet; intervalo de confiança.</div></div>
-    <div class="dy"><div class="when"><b>Qua 23</b>2h</div><div class="am">Previsão de 6 meses com intervalo; <code>fato_previsao.csv</code> (data, ativo, modelo, previsto, inf, sup). <code>docs/resultados_modelo.md</code>.</div><div class="pm"><strong>Power BI 1 · Xperiun</strong> — <em>Modelagem de Dados Avançado</em>: "Star Schema ou Snowflake?" e a aula de tabela calendário / relacionamentos bidirecionais.</div></div>
-    <div class="dy"><div class="when"><b>Qui 24</b>2h</div><div class="am">Power BI: importar CSVs gold + previsão; <code>dim_calendario</code>, <code>dim_ativo</code>, <code>fato_mensal</code>, <code>fato_previsao</code>; relacionamentos.</div><div class="pm"><strong>Power BI 2 · Xperiun</strong> — <em>DAX Avançado</em>: "Revisando Contexto de Filtro", "Filtrando expressões com a CALCULATE", "Removendo filtros com ALL" (~32 min).</div></div>
-    <div class="dy big"><div class="when"><b>Sex 25</b><i>2–3h</i></div><div class="am">Antes, 25 min de Xperiun · <em>DAX Avançado</em>: "Acumulado infinito com ALL/ALLSELECTED" e "Totais e médias móveis com DATESINPERIOD". Depois: medidas de retorno acumulado, retorno real, volatilidade 12m, drawdown, retorno 12m/36m.</div></div>
-    <div class="dy big"><div class="when"><b>Sáb 26</b><i>5h</i></div><div class="am">Páginas: <strong>(1)</strong> visão geral — KPIs por perfil e evolução de R$ 10 mil; <strong>(2)</strong> risco × retorno — dispersão vol × retorno, drawdown; <strong>(3)</strong> previsões — previsto × realizado no holdout e projeção 6 meses com faixa.</div></div>
-    <div class="dy big"><div class="when"><b>Dom 27</b><i>3–4h</i></div><div class="am">Acabamento visual (tema, títulos, tooltips), capturas para o README, <code>dashboard/investimentos.pbix</code> commitado.</div></div>
+    <div class="dy"><div class="when"><b>Seg 21</b>2h</div><div class="am"><code>07_baselines</code>: naive e média móvel 12m para Selic, IPCA e Ibovespa; holdout = últimos 12 meses; MAE e MAPE.</div><div class="pm"><strong>Séries 1</strong> — Kaggle <em>Time Series</em> 1–2. Xperiun · Intro à ML: "Data Leakage".</div></div>
+    <div class="dy"><div class="when"><b>Ter 22</b>2h</div><div class="am"><code>08_prophet</code> (<code>%pip install prophet</code>): mesmas 3 séries vs baseline. Se o Prophet não bater o naive no Ibovespa, isso <em>é</em> o resultado.</div><div class="pm"><strong>Séries 2</strong> — quickstart do Prophet; intervalo de confiança.</div></div>
+    <div class="dy"><div class="when"><b>Qua 23</b>2h</div><div class="am">Previsão 6 meses com intervalo → <code>gold.fato_previsao</code>. Pergunta 7 respondida; <code>docs/resultados_modelo.md</code>.</div><div class="pm"><strong>Power BI 1 · Xperiun</strong> — <em>Modelagem de Dados Avançado</em>: "Star Schema ou Snowflake?", calendário, relacionamentos.</div></div>
+    <div class="dy"><div class="when"><b>Qui 24</b>2h</div><div class="am">Power BI: conectar ao Databricks (ou CSV); estrela <code>dim_calendario</code> ← <code>fato_mensal</code> → <code>dim_ativo</code>, <code>fato_previsao</code>. <strong>DAX básico:</strong> <code>SUM</code>, <code>AVERAGE</code>, <code>DIVIDE</code>.</div><div class="pm"><strong>Power BI 2 · Xperiun</strong> — <em>DAX Avançado</em>: contexto de filtro, <code>CALCULATE</code>, <code>ALL</code> (32 min).</div></div>
+    <div class="dy big"><div class="when"><b>Sex 25</b><i>2–3h</i></div><div class="am">Antes, 25 min de Xperiun · DAX: "Acumulado infinito", "Médias móveis com DATESINPERIOD". Depois, <strong>DAX intermediário → avançado:</strong> retorno 12/36/60m, acumulado (<code>PRODUCTX</code>), retorno real, vol 12m, drawdown com variáveis, <code>RANKX</code> anual.</div></div>
+    <div class="dy big"><div class="when"><b>Sáb 26</b><i>5h</i></div><div class="am">Páginas: <strong>(1)</strong> Diretoria — KPIs por perfil, R$ 10 mil com what-if, ranking; <strong>(2)</strong> Risco — vol × retorno, drawdown e recuperação; <strong>(3)</strong> Previsão — previsto × realizado, projeção com faixa. Apoio: Xperiun · "Usando DAX em Visuais".</div></div>
+    <div class="dy big"><div class="when"><b>Dom 27</b><i>3–4h</i></div><div class="am">Acabamento (tema, tooltips, bookmarks), capturas para o README, <code>dashboard/horizonte_investimentos.pbix</code> commitado. Pergunta 8 respondida.</div></div>
   </div>
 
   <div class="weekhead"><h3>Reta final · Portfólio</h3><span class="range">28–30 set</span></div>
   <div class="days">
-    <div class="dy big final"><div class="when"><b>Seg 28</b>2h</div><div class="am">README final: problema → dados → pipeline → modelo → dashboard → conclusões, com diagrama e prints. Limpar notebooks.</div></div>
-    <div class="dy big final"><div class="when"><b>Ter 29</b>2h</div><div class="am">Rodar tudo do zero (<code>coleta.py</code> → SQL → notebook) para provar reprodutibilidade. <code>docs/aprendizados.md</code>. Rascunho do post.</div></div>
+    <div class="dy big final"><div class="when"><b>Seg 28</b>2h</div><div class="am">README final: o caso → dados → arquitetura → perguntas e respostas → modelo → dashboard, com diagrama e prints. Limpar notebooks.</div></div>
+    <div class="dy big final"><div class="when"><b>Ter 29</b>2h</div><div class="am">Rodar o pipeline do zero no Databricks (01 → 08) para provar reprodutibilidade. <code>docs/aprendizados.md</code>. Rascunho do post.</div></div>
     <div class="dy big final"><div class="when"><b>Qua 30</b>2h</div><div class="am">Tag <code>v1.0</code> (release). Post no LinkedIn com o link. Projeto na seção <em>Projetos</em> do perfil. <strong>Entregue.</strong></div></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Prática</p>
+  <h2>Duas escadas, do básico ao avançado</h2>
+  <div class="ladders">
+    <div class="ladder sql"><h3>SQL — na ordem em que aparece</h3><ol>
+      <li><b>básico</b><span><code>SELECT</code>, <code>WHERE</code>, <code>ORDER BY</code>, <code>DISTINCT</code>, <code>CAST</code>, <code>COALESCE</code> · 03</span></li>
+      <li><b>datas</b><span><code>to_date</code>, <code>date_trunc</code>, <code>last_day</code>, <code>datediff</code>, <code>add_months</code> · 03, 04</span></li>
+      <li><b>agregação</b><span><code>GROUP BY</code>, <code>HAVING</code>, <code>CASE WHEN</code> · 03</span></li>
+      <li><b>junções</b><span><code>INNER/LEFT JOIN</code>, chaves compostas, calendário · 03, 05</span></li>
+      <li><b>estrutura</b><span>CTEs (<code>WITH</code>), subqueries, <code>CREATE OR REPLACE</code> · 04</span></li>
+      <li><b>window</b><span><code>LAG</code>, <code>SUM OVER</code>, <code>ROWS BETWEEN</code>, <code>RANK</code>, <code>FIRST_VALUE</code>, <code>QUALIFY</code> · 04, 05</span></li>
+      <li><b>estatística</b><span><code>STDDEV</code>, <code>CORR</code>, <code>EXP(SUM(LN()))</code>, <code>PERCENTILE</code> · 04, 05</span></li>
+      <li><b>reshape</b><span><code>PIVOT</code>, <code>UNPIVOT</code>, <code>COLLECT_LIST</code> · 05</span></li>
+      <li><b>delta</b><span><code>MERGE INTO</code>, <code>DESCRIBE HISTORY</code> · 04 (v2: incremental)</span></li>
+    </ol></div>
+    <div class="ladder dax"><h3>DAX — medida a medida</h3><ol>
+      <li><b>básico</b><span>valor médio, contagem de meses, retorno médio · <code>SUM</code>, <code>AVERAGE</code>, <code>DIVIDE</code></span></li>
+      <li><b>contexto</b><span>retorno por perfil vs total, % do subtotal · <code>CALCULATE</code>, <code>ALL</code>, <code>ALLSELECTED</code></span></li>
+      <li><b>tempo</b><span>retorno 12/36/60m, no ano · <code>DATESINPERIOD</code>, <code>DATEADD</code>, <code>TOTALYTD</code></span></li>
+      <li><b>acumulado</b><span>R$ 10 mil → hoje, índice base 100 · <code>PRODUCTX</code>, <code>FILTER</code></span></li>
+      <li><b>variáveis</b><span>drawdown máximo, meses até recuperar · <code>VAR</code>, <code>MAXX</code></span></li>
+      <li><b>ranking</b><span>melhor classe do ano, faixas de risco · <code>RANKX</code>, <code>SWITCH</code>, <code>TOPN</code></span></li>
+      <li><b>what-if</b><span>valor inicial ajustável · parâmetro, <code>SELECTEDVALUE</code></span></li>
+      <li><b>visual</b><span>destacar maior/menor, cor condicional por medida</span></li>
+    </ol></div>
   </div>
 </section>
 
 <section>
   <p class="eyebrow">Git e GitHub</p>
   <h2>O que o mercado pede — e só isso</h2>
-  <p style="font-size:.95rem;margin-bottom:14px;max-width:66ch">Para vaga de dados: clonar, <code>add / commit / push / pull</code>, mensagens de commit claras, <code>.gitignore</code>, branches, abrir e revisar pull request, README bem escrito, tags e releases. Rebase, submodules e CI ficam para depois.</p>
+  <p style="font-size:.95rem;margin-bottom:14px;max-width:68ch">Clonar, <code>add / commit / push / pull</code>, mensagens claras, <code>.gitignore</code>, branches, pull request, README, tags e releases. Aqui você pratica de dois lugares: o Git folder do Databricks e o terminal local no VS Code.</p>
   <div class="gitlist">
-    <div class="gi"><div>Xperiun · <em>Git &amp; GitHub para Colaboração</em> — "Git &amp; GitHub", "Meu Primeiro Commit"<small>~38 min · fonte principal, em português, já no seu plano Ultra</small></div><span class="w">seg 14</span></div>
+    <div class="gi"><div>Xperiun · <em>Git &amp; GitHub para Colaboração</em> — "Git &amp; GitHub", "Meu Primeiro Commit"<small>~38 min · fonte principal, em português</small></div><span class="w">seg 14</span></div>
     <div class="gi"><div>Xperiun — "Conectando meu repositório local ao GitHub", "Resumo dos novos comandos Git"<small>~23 min</small></div><span class="w">ter 15</span></div>
-    <div class="gi"><div>Xperiun — "Introdução a branches", "Conceitos essenciais", "Pull Request"<small>~41 min — a primeira PR do projeto acontece nessa noite</small></div><span class="w">qui 17</span></div>
+    <div class="gi"><div>Xperiun — "Introdução a branches", "Conceitos essenciais", "Pull Request"<small>~41 min — a primeira PR acontece nessa noite</small></div><span class="w">qui 17</span></div>
     <div class="gi"><div>Xperiun — "Mão na massa com Branch"<small>35 min, opcional</small></div><span class="w">fds 19–20</span></div>
-    <div class="gi"><div>Xperiun — módulo "Setup profissional para Engenharia de Dados": venv e uv, subindo no GitHub, colega clonando, PR e merge<small>~64 min, opcional — é exatamente o ambiente que montamos hoje (uv + .venv)</small></div><span class="w">fds 26–27</span></div>
-    <div class="gi"><div>GitHub Skills — <em>Introduction to GitHub</em> · <em>Pro Git</em> caps. 1–3 (pt-br)<small>reserva em inglês para praticar dentro do GitHub; referência para dúvidas</small></div><span class="w">opcional</span></div>
+    <div class="gi"><div>Xperiun — "Setup profissional para Engenharia de Dados": venv e uv, subindo no GitHub, colega clonando, PR e merge<small>~64 min, opcional — é o ambiente local que montamos hoje</small></div><span class="w">fds 26–27</span></div>
+    <div class="gi"><div>GitHub Skills <em>Introduction to GitHub</em> · <em>Pro Git</em> caps. 1–3 (pt-br)<small>reserva em inglês; referência para dúvidas</small></div><span class="w">opcional</span></div>
   </div>
 </section>
 
@@ -206,14 +236,14 @@
   <p class="eyebrow">Teoria mínima</p>
   <h2>Só o que o dia exige — Xperiun primeiro</h2>
   <div class="tracks">
-    <div class="track"><div class="k">Git / GitHub</div><div>Xperiun · <em>Git &amp; GitHub para Colaboração</em> (tabela acima).</div></div>
-    <div class="track"><div class="k">Python / pandas</div><div>Xperiun · <em>Python para Análise de Dados</em>: "Funções", "Arquivo CSV". <strong>pandas não está no Xperiun</strong> — Kaggle <em>Pandas</em>, lições 1–4.</div></div>
-    <div class="track"><div class="k">SQL / Databricks</div><div>Xperiun · <em>Databricks com Spark</em> (já em andamento): "Databricks SQL" (5 aulas), "Manipulando datas", "Window functions", "Delta Lake I", "Conectando os seus dados no Power BI" (4 aulas), bônus "Lendo dados da API no Databricks". Documentação do Free Edition para Volumes e Unity Catalog.</div></div>
-    <div class="track"><div class="k">Previsão</div><div>Xperiun · <em>Introdução à ML</em>: "Data Leakage". Kaggle <em>Time Series</em> lições 1–2 e quickstart do Prophet.</div></div>
+    <div class="track"><div class="k">Git / GitHub</div><div>Xperiun · <em>Git &amp; GitHub para Colaboração</em> (acima).</div></div>
+    <div class="track"><div class="k">Python / pandas</div><div>Xperiun · <em>Python para Análise de Dados</em>: "Funções", "Arquivo CSV". <strong>pandas não está no Xperiun</strong> — Kaggle <em>Pandas</em> 1–4.</div></div>
+    <div class="track"><div class="k">Databricks / SQL</div><div>Xperiun · <em>Databricks com Spark</em>: "Databricks SQL" (5 aulas), "Manipulando datas", "Window functions", "Delta Lake I", "Conectando os seus dados no Power BI" (4), bônus "Lendo dados da API no Databricks". <em>Banco de Dados e Linguagem SQL</em> para funções específicas. Docs do Free Edition para Volumes, Unity Catalog e Git folders.</div></div>
+    <div class="track"><div class="k">Previsão</div><div>Xperiun · <em>Introdução à ML</em>: "Data Leakage". Kaggle <em>Time Series</em> 1–2; quickstart do Prophet.</div></div>
     <div class="track"><div class="k">EDA</div><div>Xperiun · <em>Introdução à ML</em>, módulo "Análise Exploratória de Dados" (Matplotlib, Seaborn).</div></div>
-    <div class="track"><div class="k">Power BI / DAX</div><div>Xperiun · <em>Modelagem de Dados Avançado</em> (star schema, calendário) e <em>DAX Avançado</em> (CALCULATE, inteligência de tempo, acumulado, médias móveis, "Usando DAX em Visuais"). SQLBI <em>DAX Guide</em> para consultar uma função.</div></div>
-    <div class="track"><div class="k">KPIs</div><div>Xperiun · <em>Business Analytics: Indicadores e KPIs</em> (já em andamento) — só para desenhar a página 1 do dashboard.</div></div>
-    <div class="track"><div class="k">Finanças</div><div>15 minutos no site do Tesouro Direto ou B3 Educação: pós × pré × inflação × variável. O resto, o próprio dado ensina.</div></div>
+    <div class="track"><div class="k">Power BI / DAX</div><div>Xperiun · <em>Modelagem de Dados Avançado</em> e <em>DAX Avançado</em> (CALCULATE, inteligência de tempo, acumulado, médias móveis, visuais). SQLBI <em>DAX Guide</em> para consultar uma função.</div></div>
+    <div class="track"><div class="k">KPIs</div><div>Xperiun · <em>Business Analytics: Indicadores e KPIs</em> — para desenhar a página da diretoria.</div></div>
+    <div class="track"><div class="k">Finanças</div><div>15 minutos no Tesouro Direto ou B3 Educação: pós × pré × inflação × variável.</div></div>
   </div>
 </section>
 
@@ -224,10 +254,12 @@
     <li>Pedir explicação <strong>antes</strong> do código: "me explique como fazer X, depois me mostre".</li>
     <li>Escrever a primeira versão sozinha; a IA revisa, aponta erros e sugere a forma idiomática.</li>
     <li>Toda função gerada com IA é reescrita com as próprias palavras nos comentários.</li>
+    <li>Quando travar num conceito, a IA aponta a aula e o minuto no Xperiun em vez de explicar por cima do professor.</li>
     <li>O diário (<code>docs/diario.md</code>) registra o que a IA fez que você ainda não saberia fazer — isso vira a pauta da v2.</li>
   </ol>
+  <div class="rule" style="margin-top:18px"><strong>Regras do ritmo:</strong> manhã nunca é teoria; noite nunca é código pesado. Todo dia termina com um commit. Travou por mais de 30 minutos? Anota no diário e me chama.</div>
 </section>
 
-<p class="foot">Versão em texto: <code>docs/plano_17_dias.md</code> no repositório. O plano de 12 semanas ficou guardado como backlog da v2 em <code>docs/backlog_v2_plano_12_semanas.md</code>.</p>
+<p class="foot">Versão em texto: <code>docs/plano_17_dias.md</code> no repositório. O plano de 12 semanas é o backlog da v2 em <code>docs/backlog_v2_plano_12_semanas.md</code>.</p>
 
 </div>
