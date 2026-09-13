@@ -1,0 +1,302 @@
+<title>Plano Investimentos em 12 Semanas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#F5F7F5; --surface:#FFFFFF; --ink:#16232A; --muted:#5A6A6E; --line:#D8DEDC;
+    --accent:#0F6F6B; --accent-soft:#DDEEEC; --gold:#A8781F; --gold-soft:#F4EAD6;
+    --code-bg:#EDF1F0;
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --sans:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:"JetBrains Mono",Consolas,"Courier New",monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0F1618; --surface:#172023; --ink:#E4EAE8; --muted:#97A6A6; --line:#283437;
+      --accent:#4FB8B1; --accent-soft:#183634; --gold:#D5A64E; --gold-soft:#3A2E16; --code-bg:#1E2A2D;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0F1618; --surface:#172023; --ink:#E4EAE8; --muted:#97A6A6; --line:#283437;
+    --accent:#4FB8B1; --accent-soft:#183634; --gold:#D5A64E; --gold-soft:#3A2E16; --code-bg:#1E2A2D;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;padding-inline:20px;padding-block:40px 80px}
+  .wrap{max-width:780px;margin:0 auto;display:grid;gap:56px}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0;text-wrap:balance}
+  h1{font-size:2.5rem;font-variation-settings:"opsz" 144}
+  h2{font-size:1.6rem;margin-bottom:18px}
+  h3{font-size:1.15rem}
+  p{margin:0}
+  .eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  header{display:grid;gap:14px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+  header p.lead{font-size:1.1rem;color:var(--muted);max-width:60ch}
+  .dates{display:flex;flex-wrap:wrap;gap:10px 28px;font-family:var(--mono);font-size:.85rem;color:var(--muted)}
+  .dates b{color:var(--ink);font-weight:500}
+  code{font-family:var(--mono);font-size:.85em;background:var(--code-bg);padding:1px 5px;border-radius:3px}
+  a{color:var(--accent)}
+
+  table{width:100%;border-collapse:collapse;font-size:.95rem}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  td:first-child{font-weight:600;white-space:nowrap}
+  .tscroll{overflow-x:auto}
+
+  /* rotina semanal */
+  .week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .day{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 8px;display:grid;gap:6px;min-height:150px}
+  .day .d{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .slot{font-size:.8rem;line-height:1.3;padding:6px 7px;border-radius:4px}
+  .slot.code{background:var(--accent-soft);color:var(--ink)}
+  .slot.theory{background:var(--gold-soft);color:var(--ink)}
+  .slot.rest{color:var(--muted);border:1px dashed var(--line)}
+  .slot b{display:block;font-family:var(--mono);font-weight:500;font-size:.7rem;margin-bottom:2px}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:.85rem;color:var(--muted)}
+  .legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .legend .lc::before{background:var(--accent-soft);border:1px solid var(--accent)}
+  .legend .lt::before{background:var(--gold-soft);border:1px solid var(--gold)}
+  .rule{margin-top:18px;padding:14px 16px;border-left:3px solid var(--accent);background:var(--surface);font-size:.95rem}
+
+  /* pipeline */
+  .pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:stretch}
+  .stage{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;display:grid;gap:4px;align-content:start;position:relative}
+  .stage .n{font-family:var(--mono);font-size:.7rem;color:var(--accent)}
+  .stage .t{font-weight:600;font-size:.95rem;line-height:1.2}
+  .stage .s{font-size:.8rem;color:var(--muted);line-height:1.3}
+  .stage:not(:last-child)::after{content:"→";position:absolute;right:-11px;top:14px;color:var(--muted);font-size:.9rem;z-index:1}
+
+  /* escada de risco */
+  .ladder{display:grid;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+  .rung{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);align-items:start}
+  .rung:last-child{border-bottom:0}
+  .rung .lvl{font-family:var(--serif);font-weight:600;font-size:1rem}
+  .rung .lvl small{display:block;font-family:var(--mono);font-size:.68rem;font-weight:400;color:var(--muted);letter-spacing:.04em;margin-top:2px}
+  .rung .what{font-size:.92rem}
+  .rung .src{font-family:var(--mono);font-size:.76rem;color:var(--muted);margin-top:4px;line-height:1.45}
+  .r1 .lvl{color:var(--accent)} .r4 .lvl{color:var(--gold)}
+  .api{margin-top:14px;font-size:.85rem;color:var(--muted)}
+  .api code{display:block;margin-top:6px;padding:8px 10px;overflow-x:auto;white-space:nowrap;font-size:.78rem}
+
+  /* fases */
+  .phase{display:grid;gap:14px;padding-top:22px;border-top:1px solid var(--line)}
+  .phase-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px}
+  .phase-head .range{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+  .wk{display:grid;grid-template-columns:118px 1fr;gap:16px;padding:14px 0;border-top:1px dashed var(--line)}
+  .wk:first-of-type{border-top:0}
+  .wk .lab{font-family:var(--mono);font-size:.78rem;line-height:1.5;color:var(--muted)}
+  .wk .lab b{display:block;color:var(--ink);font-weight:500;font-size:.9rem}
+  .wk .body{display:grid;gap:8px;font-size:.95rem}
+  .kv{display:grid;grid-template-columns:72px 1fr;gap:10px}
+  .kv .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding-top:5px}
+  .kv.p .k{color:var(--accent)} .kv.t .k{color:var(--gold)} .kv.e .k{color:var(--muted)}
+  .kv.e .v{font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+
+  /* trilhas e regras */
+  .tracks{display:grid;gap:14px}
+  .track{display:grid;grid-template-columns:118px 1fr;gap:16px;font-size:.95rem}
+  .track .k{font-weight:600}
+  .track .k small{display:block;font-weight:400;font-size:.78rem;color:var(--muted)}
+  ol.ai{margin:0;padding-left:22px;display:grid;gap:8px;font-size:.95rem}
+  .foot{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+
+  @media (max-width:640px){
+    body{font-size:16px}
+    h1{font-size:2rem}
+    .week{grid-template-columns:repeat(2,1fr)}
+    .day{min-height:0}
+    .pipe{grid-template-columns:1fr}
+    .stage:not(:last-child)::after{content:"↓";right:auto;left:12px;top:auto;bottom:-14px}
+    .rung,.wk,.track{grid-template-columns:1fr;gap:6px}
+    .kv{grid-template-columns:1fr;gap:2px}
+  }
+  @media (prefers-reduced-motion: no-preference){ a{transition:color .15s} }
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Projeto Pessoal Um · Caroline Ramos</p>
+  <h1>Investimentos: dos dados públicos ao modelo preditivo, em 12 semanas</h1>
+  <p class="lead">Um pipeline completo — coleta via API em Python, tratamento em SQL no Databricks, previsão de séries temporais e dashboard em Power BI — construído em ~14 horas por semana e publicado no GitHub.</p>
+  <div class="dates"><span>início <b>seg 14/09/2026</b></span><span>fim <b>dom 06/12/2026</b></span><span>ritmo <b>~14 h/semana</b></span><span>repositório <b>github.com/caramos93</b></span></div>
+</header>
+
+<section>
+  <p class="eyebrow">Ponto de partida</p>
+  <h2>De onde você sai e aonde chega</h2>
+  <div class="tscroll"><table>
+    <thead><tr><th>Pilar</th><th>Hoje</th><th>Ao fim da semana 12</th></tr></thead>
+    <tbody>
+      <tr><td>Python</td><td>básico, pouca prática</td><td>coleta via API, tratamento com pandas, modelo de séries temporais treinado e avaliado</td></tr>
+      <tr><td>SQL Databricks</td><td>forte, uso diário</td><td>arquitetura bronze → silver → gold própria, window functions, Delta, tabelas prontas para BI</td></tr>
+      <tr><td>Power BI</td><td>manutenção do que já existe</td><td>modelo estrela e dashboard criados do zero, com medidas DAX próprias</td></tr>
+      <tr><td>Finanças</td><td>conhecimento e interesse fortes</td><td>domínio das classes (conservador → agressivo) e das métricas de risco e retorno</td></tr>
+      <tr><td>Git / GitHub</td><td>conta sem projetos próprios</td><td>repositório público, commits semanais, README que conta a história</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <p class="eyebrow">Rotina</p>
+  <h2>A semana de 14 horas</h2>
+  <div class="week">
+    <div class="day"><span class="d">Seg</span><div class="slot code"><b>manhã · 1h</b>prática do projeto</div><div class="slot theory"><b>noite · 1h</b>teoria + diário</div></div>
+    <div class="day"><span class="d">Ter</span><div class="slot code"><b>manhã · 1h</b>prática do projeto</div><div class="slot theory"><b>noite · 1h</b>teoria + diário</div></div>
+    <div class="day"><span class="d">Qua</span><div class="slot code"><b>manhã · 1h</b>prática do projeto</div><div class="slot theory"><b>noite · 1h</b>teoria + diário</div></div>
+    <div class="day"><span class="d">Qui</span><div class="slot code"><b>manhã · 1h</b>prática do projeto</div><div class="slot theory"><b>noite · 1h</b>teoria + diário</div></div>
+    <div class="day"><span class="d">Sex</span><div class="slot rest"><b>livre</b>folga ou revisão leve; nada novo</div></div>
+    <div class="day"><span class="d">Sáb</span><div class="slot code"><b>3–4h</b>bloco profundo: a entrega da semana</div></div>
+    <div class="day"><span class="d">Dom</span><div class="slot code"><b>1–2h</b>revisar, commitar, planejar</div></div>
+  </div>
+  <div class="legend"><span class="lc">prática — cabeça fresca, mão na massa</span><span class="lt">teoria — leitura ou vídeo do tema da semana, 10 min de diário</span></div>
+  <div class="rule"><strong>Regra de ouro:</strong> cada semana termina com um commit no GitHub. Se a semana apertar, corta-se teoria, não a entrega. Manhã nunca é teoria; noite nunca é código pesado.</div>
+</section>
+
+<section>
+  <p class="eyebrow">Arquitetura</p>
+  <h2>O pipeline, ponta a ponta</h2>
+  <div class="pipe">
+    <div class="stage"><span class="n">fonte</span><span class="t">APIs públicas</span><span class="s">BCB SGS, Tesouro Transparente, B3 via yfinance, cripto</span></div>
+    <div class="stage"><span class="n">python</span><span class="t">Coleta</span><span class="s">requests + yfinance → <code>data/raw</code> em parquet</span></div>
+    <div class="stage"><span class="n">sql</span><span class="t">Databricks Free</span><span class="s">bronze → silver → gold; retornos, vol, drawdown</span></div>
+    <div class="stage"><span class="n">python</span><span class="t">Modelo</span><span class="s">baselines, ARIMA, Prophet, ML; backtest; <code>fato_previsao</code></span></div>
+    <div class="stage"><span class="n">power bi</span><span class="t">Dashboard</span><span class="s">modelo estrela, DAX, KPIs por perfil, previsto × realizado</span></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Escopo</p>
+  <h2>A escada de risco</h2>
+  <div class="ladder">
+    <div class="rung r1"><div class="lvl">Conservador<small>renda fixa pós</small></div><div><div class="what">Poupança, Tesouro Selic, CDB pós-fixado (CDI)</div><div class="src">BCB SGS · Selic 11 · CDI 12 · poupança (conferir código no catálogo)</div></div></div>
+    <div class="rung r2"><div class="lvl">Moderado<small>inflação · pré · fii</small></div><div><div class="what">Tesouro IPCA+, Tesouro Prefixado, fundos imobiliários</div><div class="src">Tesouro Transparente (preços e taxas) · yfinance HGLG11.SA, XPML11.SA</div></div></div>
+    <div class="rung r3"><div class="lvl">Arrojado<small>renda variável</small></div><div><div class="what">Ações BR, ETFs de Ibovespa e S&amp;P 500 em reais, small caps</div><div class="src">yfinance ^BVSP · BOVA11.SA · IVVB11.SA · SMAL11.SA · PETR4.SA · VALE3.SA</div></div></div>
+    <div class="rung r4"><div class="lvl">Agressivo<small>cripto</small></div><div><div class="what">Bitcoin e Ethereum</div><div class="src">yfinance BTC-USD, ETH-USD (+ PTAX, SGS 1) ou CoinGecko</div></div></div>
+    <div class="rung r5"><div class="lvl">Referência<small>macro</small></div><div><div class="what">IPCA, dólar, meta Selic — para retorno real e contexto</div><div class="src">BCB SGS · IPCA 433 · PTAX venda 1 · meta Selic 432</div></div></div>
+  </div>
+  <p class="api">A API do Banco Central não pede cadastro nem chave — é o primeiro <code>requests.get</code> do projeto:<code>https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados?formato=json&amp;dataInicial=01/01/2015&amp;dataFinal=31/12/2026</code></p>
+</section>
+
+<section>
+  <p class="eyebrow">Cronograma</p>
+  <h2>Sete fases, doze semanas</h2>
+
+  <div class="phase">
+    <div class="phase-head"><h3>Fase 0 · Fundação</h3><span class="range">semana 1 · 14–20/09</span></div>
+    <div class="wk"><div class="lab"><b>Semana 1</b>14–20 set</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">Criar o repositório no GitHub; instalar Python (Miniconda ou uv) e VS Code; ambiente <code>venv</code> com pandas, requests, yfinance, matplotlib, jupyter; conta no Databricks Free Edition; Power BI Desktop; primeiro <code>requests.get</code> na API do BCB trazendo a Selic e salvando um CSV.</span></div>
+      <div class="kv t"><span class="k">teoria</span><span class="v">Git básico (clone, add, commit, push, .gitignore). Panorama das classes: renda fixa × variável; pós × pré × inflação.</span></div>
+      <div class="kv e"><span class="k">entrega</span><span class="v">Repositório público com README, .gitignore, <code>requirements.txt</code> e <code>src/coleta_bcb.py</code> funcionando.</span></div>
+      <div class="chips"><span class="chip">git</span><span class="chip">python</span><span class="chip">finanças</span></div>
+    </div></div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><h3>Fase 1 · Coleta de dados</h3><span class="range">semanas 2–3 · 21/09–04/10</span></div>
+    <div class="wk"><div class="lab"><b>Semana 2</b>21–27 set</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">Função genérica <code>busca_sgs(codigo, inicio, fim)</code>; coletar Selic, CDI, IPCA e PTAX; salvar em <code>data/raw/</code> como parquet; script único <code>src/coleta.py</code>.</span></div>
+      <div class="kv t"><span class="k">teoria</span><span class="v">pandas: DataFrame, índice de datas, <code>resample</code>, <code>merge</code>. Selic × CDI; taxa nominal × real.</span></div>
+    </div></div>
+    <div class="wk"><div class="lab"><b>Semana 3</b>28 set–4 out</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">yfinance para índices, ETFs, FIIs, ações e cripto; CSV do Tesouro Transparente lido com pandas; padronizar tudo no formato <code>data · ativo · valor · fonte</code>.</span></div>
+      <div class="kv t"><span class="k">teoria</span><span class="v">Renda fixa a fundo: marcação a mercado e por que o Tesouro IPCA+ oscila de preço.</span></div>
+      <div class="kv e"><span class="k">entrega</span><span class="v"><code>python src/coleta.py</code> recria toda a <code>data/raw/</code> do zero. Cada fonte documentada em <code>docs/fontes_de_dados.md</code>.</span></div>
+      <div class="chips"><span class="chip">python</span><span class="chip">apis</span><span class="chip">finanças</span></div>
+    </div></div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><h3>Fase 2 · Tratamento em SQL</h3><span class="range">semanas 4–5 · 05–18/10</span></div>
+    <div class="wk"><div class="lab"><b>Semana 4</b>5–11 out</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">Subir os arquivos para um Volume no Unity Catalog; schema <code>bronze</code> (como chegou); <code>silver</code> com tipos corrigidos, datas padronizadas, deduplicação e calendário de dias úteis; <code>dim_ativo</code> (ativo, classe, perfil de risco).</span></div>
+      <div class="kv t"><span class="k">teoria</span><span class="v">Arquitetura medalhão; Delta Lake (time travel, <code>MERGE</code>).</span></div>
+    </div></div>
+    <div class="wk"><div class="lab"><b>Semana 5</b>12–18 out</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">Camada <code>gold</code>: retornos diários e mensais (<code>LAG</code>), retorno acumulado, retorno real descontando IPCA, volatilidade móvel (<code>STDDEV OVER</code>), drawdown máximo, correlação mensal entre classes. Tudo em SQL.</span></div>
+      <div class="kv t"><span class="k">teoria</span><span class="v">Window functions avançadas. Métricas: volatilidade anualizada, Sharpe (excedente sobre o CDI), drawdown, correlação e diversificação.</span></div>
+      <div class="kv e"><span class="k">entrega</span><span class="v">Notebooks SQL versionados em <code>src/sql/</code> e <code>docs/dicionario_gold.md</code> explicando cada coluna.</span></div>
+      <div class="chips"><span class="chip">sql</span><span class="chip">databricks</span><span class="chip">finanças</span></div>
+    </div></div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><h3>Fase 3 · Análise exploratória</h3><span class="range">semana 6 · 19–25/10</span></div>
+    <div class="wk"><div class="lab"><b>Semana 6</b>19–25 out</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">Trazer as tabelas gold para o pandas; séries por classe; "R$ 10 mil investidos em 2015 em cada perfil"; heatmap de correlação; tabela risco × retorno. Escrever as cinco conclusões principais.</span></div>
+      <div class="kv t"><span class="k">teoria</span><span class="v">matplotlib/seaborn. Componentes de uma série temporal: tendência, sazonalidade, ruído; estacionariedade.</span></div>
+      <div class="kv e"><span class="k">entrega</span><span class="v"><code>notebooks/01_exploracao.ipynb</code> limpo e comentado. Checkpoint: post no LinkedIn mostrando o progresso.</span></div>
+      <div class="chips"><span class="chip">python</span><span class="chip">visualização</span><span class="chip">linkedin</span></div>
+    </div></div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><h3>Fase 4 · Modelo preditivo</h3><span class="range">semanas 7–9 · 26/10–15/11</span></div>
+    <div class="wk"><div class="lab"><b>Semana 7</b>26 out–1 nov</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">Baselines (naive, média móvel, sazonal naive) para Selic, IPCA e Ibovespa; backtest com janela móvel; MAE, RMSE, MAPE. Sem baseline não dá para saber se um modelo é bom.</span></div>
+      <div class="kv t"><span class="k">teoria</span><span class="v"><em>Forecasting: Principles and Practice</em>, caps. 1–5. Validação temporal: nunca embaralhar o tempo.</span></div>
+    </div></div>
+    <div class="wk"><div class="lab"><b>Semana 8</b>2–8 nov</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">ARIMA/SARIMA com statsmodels (ACF/PACF, seleção de ordem) e Prophet; previsão de 6 e 12 meses com intervalo de confiança.</span></div>
+      <div class="kv t"><span class="k">teoria</span><span class="v">FPP caps. 8–9; Kaggle <em>Time Series</em>.</span></div>
+    </div></div>
+    <div class="wk"><div class="lab"><b>Semana 9</b>9–15 nov</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">Modelo de ML (features de lags + LightGBM ou RandomForest) para comparar; escolher o melhor por série; gravar <code>fato_previsao</code> (data, ativo, modelo, previsto, limites) no Databricks.</span></div>
+      <div class="kv t"><span class="k">teoria</span><span class="v">Por que prever preço de ação não funciona — e por que prever tendência e volatilidade é o realista.</span></div>
+      <div class="kv e"><span class="k">entrega</span><span class="v"><code>notebooks/02_modelagem.ipynb</code>, <code>src/modelo.py</code> reproduzível e <code>docs/resultados_modelo.md</code> com a comparação.</span></div>
+      <div class="chips"><span class="chip">python</span><span class="chip">séries temporais</span><span class="chip">ml</span></div>
+    </div></div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><h3>Fase 5 · Power BI</h3><span class="range">semanas 10–11 · 16–29/11</span></div>
+    <div class="wk"><div class="lab"><b>Semana 10</b>16–22 nov</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">Conectar ao Databricks (conector nativo; alternativa: exportar gold em parquet/csv). Modelo estrela: <code>dim_calendario</code>, <code>dim_ativo</code>, <code>fato_cotacoes</code>, <code>fato_previsao</code>. Medidas DAX: retorno acumulado, CAGR, retorno real, volatilidade, drawdown, Sharpe.</span></div>
+      <div class="kv t"><span class="k">teoria</span><span class="v">Microsoft Learn PL-300: modelagem. SQLBI <em>Introducing DAX</em>: contexto de filtro × contexto de linha.</span></div>
+    </div></div>
+    <div class="wk"><div class="lab"><b>Semana 11</b>23–29 nov</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">Páginas: visão geral com KPIs por perfil · risco × retorno · previsões com intervalo vs. realizado · simulador "quanto virariam R$ 10 mil". Tema visual próprio, tooltips, bookmarks.</span></div>
+      <div class="kv t"><span class="k">teoria</span><span class="v">Design de dashboard: hierarquia, poucos KPIs por página, cor com significado.</span></div>
+      <div class="kv e"><span class="k">entrega</span><span class="v"><code>dashboard/investimentos.pbix</code> e capturas de tela/gif no README.</span></div>
+      <div class="chips"><span class="chip">power bi</span><span class="chip">dax</span><span class="chip">modelo estrela</span></div>
+    </div></div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><h3>Fase 6 · Portfólio</h3><span class="range">semana 12 · 30/11–06/12</span></div>
+    <div class="wk"><div class="lab"><b>Semana 12</b>30 nov–6 dez</div><div class="body">
+      <div class="kv p"><span class="k">prática</span><span class="v">README final contando a história (problema → dados → pipeline → modelo → dashboard → conclusões), com arquitetura e prints; limpar notebooks; <code>docs/aprendizados.md</code>; post no LinkedIn com o link; projeto adicionado à seção Projetos do perfil.</span></div>
+      <div class="kv e"><span class="k">entrega</span><span class="v">Repositório apresentável e post publicado.</span></div>
+      <div class="chips"><span class="chip">github</span><span class="chip">linkedin</span></div>
+    </div></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Estudo</p>
+  <h2>Trilha teórica por pilar — tudo gratuito</h2>
+  <div class="tracks">
+    <div class="track"><div class="k">Python<small>básico → intermediário</small></div><div>Kaggle Learn: <em>Python</em> → <em>Pandas</em> → <em>Time Series</em>. Livro <em>Python for Data Analysis</em> (Wes McKinney, 3ª ed., gratuito em wesmckinney.com/book). Hábito: toda vez que abriria o Excel, tentar no pandas.</div></div>
+    <div class="track"><div class="k">SQL / Databricks<small>forte → avançado</small></div><div>Databricks Academy (gratuito): <em>Lakehouse Fundamentals</em> e trilha <em>Data Analyst</em>. Documentação do Free Edition, Delta Lake e window functions.</div></div>
+    <div class="track"><div class="k">Power BI<small>manutenção → criação</small></div><div>Microsoft Learn, trilha <em>Power BI Data Analyst (PL-300)</em>. SQLBI: <em>DAX Guide</em> e o curso gratuito <em>Introducing DAX</em>. Modelo estrela como base de tudo.</div></div>
+    <div class="track"><div class="k">Finanças<small>interesse → domínio</small></div><div>B3 Educação (cursos gratuitos); site do Tesouro Direto (simuladores e explicação por título); Banco Central, Cidadania Financeira; programa da CPA-10 (ANBIMA) como checklist de conceitos.</div></div>
+    <div class="track"><div class="k">Previsão<small>zero → aplicado</small></div><div><em>Forecasting: Principles and Practice</em> (otexts.com/fpp3, gratuito; exemplos em R, mas a teoria é o que importa). Kaggle <em>Time Series</em>. Documentação de statsmodels e Prophet.</div></div>
+    <div class="track"><div class="k">Git<small>conta → prática</small></div><div>GitHub Skills (skills.github.com) e o livro <em>Pro Git</em> (git-scm.com/book, em português).</div></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Método</p>
+  <h2>Usar a IA sem perder o aprendizado</h2>
+  <ol class="ai">
+    <li>Pedir explicação <strong>antes</strong> do código: "me explique como fazer X, depois me mostre".</li>
+    <li>Escrever a primeira versão sozinha; usar a IA para revisar, apontar erros e sugerir a forma idiomática.</li>
+    <li>Toda função gerada com IA é reescrita com as próprias palavras nos comentários.</li>
+    <li>Registrar no diário o que a IA fez que você ainda não saberia fazer — essa lista é a sua pauta de estudo.</li>
+  </ol>
+</section>
+
+<p class="foot">Versão em texto deste plano: <code>Projetos/Projeto Pessoal Um/docs/plano_12_semanas.md</code>. Ajustes de ritmo são esperados — o cronograma serve à entrega, não o contrário.</p>
+
+</div>

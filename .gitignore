@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+.env
+
+# Dados brutos e tratados (recriados por src/coleta.py e pelo Databricks)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Editor / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*
